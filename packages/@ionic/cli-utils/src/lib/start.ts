@@ -171,28 +171,4 @@ export const STARTER_TEMPLATES: StarterTemplate[] = [
     description: 'AWS Mobile Hub Starter',
     archive: `${STARTER_BASE_URL}/ionic-angular-official-aws.tar.gz`,
   },
-  {
-    name: 'tabs',
-    type: 'ionic1',
-    description: 'A starting project for Ionic using a simple tabbed interface',
-    archive: `${STARTER_BASE_URL}/ionic1-official-tabs.tar.gz`,
-  },
-  {
-    name: 'blank',
-    type: 'ionic1',
-    description: 'A blank starter project for Ionic',
-    archive: `${STARTER_BASE_URL}/ionic1-official-blank.tar.gz`,
-  },
-  {
-    name: 'sidemenu',
-    type: 'ionic1',
-    description: 'A starting project for Ionic using a side menu with navigation in the content area',
-    archive: `${STARTER_BASE_URL}/ionic1-official-sidemenu.tar.gz`,
-  },
-  {
-    name: 'maps',
-    type: 'ionic1',
-    description: 'An Ionic starter project using Google Maps and a side menu',
-    archive: `${STARTER_BASE_URL}/ionic1-official-maps.tar.gz`,
-  },
 ];

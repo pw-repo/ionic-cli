@@ -28,7 +28,6 @@ ${chalk.cyan('[1]')}: ${chalk.bold('https://ionicframework.com/docs/cli/starters
     '--list',
     'myApp blank',
     'myApp tabs --cordova',
-    'myApp blank --type=ionic1',
     'myConferenceApp https://github.com/ionic-team/ionic-conference-app',
   ],
   inputs: [
@@ -50,7 +49,7 @@ ${chalk.cyan('[1]')}: ${chalk.bold('https://ionicframework.com/docs/cli/starters
     },
     {
       name: 'type',
-      description: `Type of project to start (e.g. ${chalk.green('ionic-angular')}, ${chalk.green('ionic1')})`,
+      description: `Type of project to start (e.g. ${chalk.green('ionic-angular')})`,
       type: String,
       default: 'ionic-angular',
     },
@@ -155,7 +154,7 @@ export class StartCommand extends Command implements CommandPreRun {
     }
 
     if (options['v1'] || options['v2']) {
-      const type = options['v1'] ? 'ionic1' : 'ionic-angular';
+      const type = 'ionic-angular';
 
       throw new FatalException(
         `Sorry! The ${chalk.green('--v1')} and ${chalk.green('--v2')} flags have been removed.\n` +

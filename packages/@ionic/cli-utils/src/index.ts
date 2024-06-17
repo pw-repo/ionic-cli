@@ -87,11 +87,7 @@ function registerHooks(hooks: IHookEngine) {
     const projectFile = project.directory ? await project.load() : undefined;
 
     if (projectFile) {
-      if (projectFile.type === 'ionic1') {
-        const { getIonic1Version } = await import('./lib/ionic1/utils');
-        const ionic1Version = await getIonic1Version(env);
-        info.push({ type: 'local-packages', key: 'Ionic Framework', value: ionic1Version ? `ionic1 ${ionic1Version}` : 'unknown' });
-      } else if (projectFile.type === 'ionic-angular') {
+      if (projectFile.type === 'ionic-angular') {
         const { getIonicAngularVersion, getAppScriptsVersion } = await import('./lib/ionic-angular/utils');
         const [ ionicAngularVersion, appScriptsVersion ] = await Promise.all([getIonicAngularVersion(env, project), getAppScriptsVersion(env, project)]);
         info.push({ type: 'local-packages', key: 'Ionic Framework', value: ionicAngularVersion ? `ionic-angular ${ionicAngularVersion}` : 'not installed' });

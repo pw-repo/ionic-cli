@@ -357,11 +357,6 @@ ${starterType.starters.map(formatStarter).join('')}
       name: 'Ionic Angular',
       starters: STARTER_TEMPLATES.filter(s => s.type === 'ionic-angular'),
     },
-    {
-      type: 'ionic1',
-      name: 'Ionic 1',
-      starters: STARTER_TEMPLATES.filter(s => s.type === 'ionic1'),
-    },
   ];
 
   return `${formatPageHeader('Starter Templates', 'cli-starter-list')}

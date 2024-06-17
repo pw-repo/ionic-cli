@@ -31,9 +31,7 @@ export class DocsCommand extends Command {
     const project = this.env.project.directory ? await this.env.project.load() : undefined;
 
     if (project) {
-      if (project.type === 'ionic1') {
-        url = 'https://ionicframework.com/docs/v1/';
-      } else if (project.type === 'ionic-angular') {
+      if (project.type === 'ionic-angular') {
         url = 'https://ionicframework.com/docs/api'; // TODO: can know framework version, HEAD request, etc
       }
     }

@@ -21,12 +21,6 @@ describe('@ionic/cli-utils', () => {
         expect(await p.getSourceDir()).toEqual('/path/to/proj/some/dir');
       });
 
-      it('should be www for ionic1', async () => {
-        const p = new project.Project('/path/to/proj', 'ionic.config.json');
-        spyOn(p, 'load').and.callFake(() => Promise.resolve({ type: 'ionic1' }));
-        expect(await p.getSourceDir()).toEqual('/path/to/proj/www');
-      });
-
       it('should be src for ionic-angular', async () => {
         const p = new project.Project('/path/to/proj', 'ionic.config.json');
         spyOn(p, 'load').and.callFake(() => Promise.resolve({ type: 'ionic-angular' }));

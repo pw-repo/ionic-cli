@@ -30,7 +30,6 @@ export async function serve(env: IonicEnvironment, inputs: CommandLineInputs, op
 
     await detectAndWarnAboutDeprecatedPlugin(env, '@ionic/cli-plugin-cordova');
     await detectAndWarnAboutDeprecatedPlugin(env, '@ionic/cli-plugin-ionic-angular');
-    await detectAndWarnAboutDeprecatedPlugin(env, '@ionic/cli-plugin-ionic1');
     await detectAndWarnAboutDeprecatedPlugin(env, '@ionic/cli-plugin-gulp');
 
     if (packageJson.devDependencies['@ionic/cli-plugin-cordova']) {
@@ -50,10 +49,7 @@ export async function serve(env: IonicEnvironment, inputs: CommandLineInputs, op
 
   const devAppDetails = await gatherDevAppDetails(env, serveOptions);
 
-  if (project.type === 'ionic1') {
-    const { serve } = await import('../lib/ionic1/serve');
-    details = await serve({ env, options: serveOptions });
-  } else if (project.type === 'ionic-angular') {
+  if (project.type === 'ionic-angular') {
     const { serve } = await import('../lib/ionic-angular/serve');
     details = await serve({ env, options: {
       platform,

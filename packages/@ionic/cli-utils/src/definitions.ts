@@ -102,7 +102,7 @@ export interface ProjectFileProxy {
   rejectUnauthorized: boolean;
 }
 
-export type ProjectType = 'ionic-angular' | 'ionic1' | 'custom';
+export type ProjectType = 'ionic-angular' | 'custom';
 
 export interface ProjectIntegration {
   enabled?: boolean;

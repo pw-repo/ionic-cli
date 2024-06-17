@@ -27,7 +27,6 @@ export async function build(env: IonicEnvironment, inputs: CommandLineInputs, op
 
     await detectAndWarnAboutDeprecatedPlugin(env, '@ionic/cli-plugin-cordova');
     await detectAndWarnAboutDeprecatedPlugin(env, '@ionic/cli-plugin-ionic-angular');
-    await detectAndWarnAboutDeprecatedPlugin(env, '@ionic/cli-plugin-ionic1');
     await detectAndWarnAboutDeprecatedPlugin(env, '@ionic/cli-plugin-gulp');
 
     if (packageJson.devDependencies['@ionic/cli-plugin-cordova']) {
@@ -42,9 +41,6 @@ export async function build(env: IonicEnvironment, inputs: CommandLineInputs, op
 
   if (project.type === 'ionic-angular') {
     const { build } = await import('../lib/ionic-angular/build');
-    await build({ env, options: { platform, ...options } });
-  } else {
-    const { build } = await import('../lib/ionic1/build');
     await build({ env, options: { platform, ...options } });
   }
 
