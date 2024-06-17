@@ -1,6 +1,6 @@
 {
   "name": "pw-ionic-cli-utils",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Ionic CLI Utils",
   "author": "pw",
   "main": "./index.js",
@@ -11,7 +11,7 @@
     "watch": "tsc -w",
     "test": "jest",
     "prepublishOnly": "npm run build",
-    "preinstall": "npx npm-force-resolutions"
+    "preinstall": "npx npm-force-resolutions || echo 1"
   },
   "keywords": [
     "ionic",
