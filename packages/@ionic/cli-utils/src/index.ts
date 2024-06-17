@@ -91,7 +91,7 @@ function registerHooks(hooks: IHookEngine) {
         const { getIonicAngularVersion, getAppScriptsVersion } = await import('./lib/ionic-angular/utils');
         const [ ionicAngularVersion, appScriptsVersion ] = await Promise.all([getIonicAngularVersion(env, project), getAppScriptsVersion(env, project)]);
         info.push({ type: 'local-packages', key: 'Ionic Framework', value: ionicAngularVersion ? `ionic-angular ${ionicAngularVersion}` : 'not installed' });
-        info.push({ type: 'local-packages', key: '@ionic/app-scripts', value: appScriptsVersion ? appScriptsVersion : 'not installed' });
+        info.push({ type: 'local-packages', key: 'pw-ionic-app-scripts', value: appScriptsVersion ? appScriptsVersion : 'not installed' });
       }
 
       if (projectFile.integrations.cordova && projectFile.integrations.cordova.enabled !== false) {

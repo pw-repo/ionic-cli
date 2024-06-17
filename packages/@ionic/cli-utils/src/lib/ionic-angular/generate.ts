@@ -63,7 +63,7 @@ async function promptQuestions(context: any) {
 }
 
 // async function getPages(context: any) {
-//   const AppScripts = await import('@ionic/app-scripts');
+//   const AppScripts = await import('pw-ionic-app-scripts');
 //   const pages = await AppScripts.getNgModules(context, ['page', 'component']);
 //   const ngModuleSuffix = await AppScripts.getStringPropertyValue('IONIC_NG_MODULE_FILENAME_SUFFIX');
 

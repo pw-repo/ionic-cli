@@ -45,7 +45,7 @@ export class MonitoringSyncSourcemapsCommand extends Command {
       await this.doProdBuild();
       sourcemapsExist = await pathExists(sourcemapsDir);
       if (!sourcemapsExist) {
-        this.env.log.error('Unable to sync sourcemaps. Make sure you have @ionic/app-scripts version 2.1.4 or greater.');
+        this.env.log.error('Unable to sync sourcemaps. Make sure you have pw-ionic-app-scripts version 2.1.4 or greater.');
         return;
       }
     } else {

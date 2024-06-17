@@ -330,7 +330,7 @@ export namespace Ailments {
     async getVersionPair(env: IonicEnvironment): Promise<[string, string]> {
       if (!this.currentVersion || !this.latestVersion) {
         this.currentVersion = await getAppScriptsVersion(env, env.project);
-        this.latestVersion = await pkgLatestVersion(env, '@ionic/app-scripts');
+        this.latestVersion = await pkgLatestVersion(env, 'pw-ionic-app-scripts');
       }
 
       if (!this.currentVersion || !this.latestVersion) {
@@ -344,8 +344,8 @@ export namespace Ailments {
       const [ currentVersion, latestVersion ] = await this.getVersionPair(env);
 
       return (
-        `Update available for ${chalk.bold('@ionic/app-scripts')}.\n` +
-        `An update is available for ${chalk.bold('@ionic/app-scripts')} (${chalk.cyan(currentVersion)} => ${chalk.cyan(latestVersion)}).\n`
+        `Update available for ${chalk.bold('pw-ionic-app-scripts')}.\n` +
+        `An update is available for ${chalk.bold('pw-ionic-app-scripts')} (${chalk.cyan(currentVersion)} => ${chalk.cyan(latestVersion)}).\n`
       ).trim();
     }
 
@@ -364,7 +364,7 @@ export namespace Ailments {
 
     async getTreatmentSteps(env: IonicEnvironment) {
       const [ , latestVersion ] = await this.getVersionPair(env);
-      const [ manager, ...managerArgs ] = await pkgManagerArgs(env, { pkg: `@ionic/app-scripts@${latestVersion ? latestVersion : 'latest'}`, saveDev: true });
+      const [ manager, ...managerArgs ] = await pkgManagerArgs(env, { pkg: `pw-ionic-app-scripts@${latestVersion ? latestVersion : 'latest'}`, saveDev: true });
 
       return [
         {
@@ -385,7 +385,7 @@ export namespace Ailments {
     async getVersionPair(env: IonicEnvironment): Promise<[string, string]> {
       if (!this.currentVersion || !this.latestVersion) {
         this.currentVersion = await getAppScriptsVersion(env, env.project);
-        this.latestVersion = await pkgLatestVersion(env, '@ionic/app-scripts');
+        this.latestVersion = await pkgLatestVersion(env, 'pw-ionic-app-scripts');
       }
 
       if (!this.currentVersion || !this.latestVersion) {
@@ -399,8 +399,8 @@ export namespace Ailments {
       const [ currentVersion, latestVersion ] = await this.getVersionPair(env);
 
       return (
-        `Major update available for ${chalk.bold('@ionic/app-scripts')}.\n` +
-        `A major update is available for ${chalk.bold('@ionic/app-scripts')} (${chalk.cyan(currentVersion)} => ${chalk.cyan(latestVersion)}).\n`
+        `Major update available for ${chalk.bold('pw-ionic-app-scripts')}.\n` +
+        `A major update is available for ${chalk.bold('pw-ionic-app-scripts')} (${chalk.cyan(currentVersion)} => ${chalk.cyan(latestVersion)}).\n`
       ).trim();
     }
 

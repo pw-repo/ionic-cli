@@ -132,7 +132,7 @@ export async function sendCommand(env: IonicEnvironment, project: IProject, comm
         const androidSdkInfo = flattenedInfo.find(item => item.key === 'Android SDK Tools');
         const cordovaInfo = flattenedInfo.find(item => item.key === 'Cordova CLI');
         const cordovaPlatformsInfo = flattenedInfo.find(item => item.key === 'Cordova Platforms');
-        const appScriptsInfo = flattenedInfo.find(item => item.key === '@ionic/app-scripts');
+        const appScriptsInfo = flattenedInfo.find(item => item.key === 'pw-ionic-app-scripts');
 
         if (frameworkInfo) {
           metric['value']['framework'] = frameworkInfo.value;
