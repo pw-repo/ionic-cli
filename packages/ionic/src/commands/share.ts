@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
-import { FatalException } from '@ionic/cli-utils/lib/errors';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
+import { FatalException } from 'pw-ionic-cli-utils/lib/errors';
 
 @CommandMetadata({
   name: 'share',

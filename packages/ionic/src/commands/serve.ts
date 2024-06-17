@@ -1,8 +1,8 @@
 import chalk from 'chalk';
 
-import { CommandLineInputs, CommandLineOptions, CommandPreRun } from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
-import { BIND_ALL_ADDRESS, BROWSERS, DEFAULT_DEV_LOGGER_PORT, DEFAULT_LIVERELOAD_PORT, DEFAULT_SERVER_PORT } from '@ionic/cli-utils/lib/serve';
+import { CommandLineInputs, CommandLineOptions, CommandPreRun } from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
+import { BIND_ALL_ADDRESS, BROWSERS, DEFAULT_DEV_LOGGER_PORT, DEFAULT_LIVERELOAD_PORT, DEFAULT_SERVER_PORT } from 'pw-ionic-cli-utils/lib/serve';
 
 @CommandMetadata({
   name: 'serve',
@@ -148,7 +148,7 @@ export class ServeCommand extends Command implements CommandPreRun {
   }
 
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { serve } = await import('@ionic/cli-utils/commands/serve');
+    const { serve } = await import('pw-ionic-cli-utils/commands/serve');
 
     await serve(this.env, inputs, options);
   }

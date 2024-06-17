@@ -1,5 +1,5 @@
-import { CommandLineInputs, CommandLineOptions } from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
+import { CommandLineInputs, CommandLineOptions } from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
 
 @CommandMetadata({
   name: 'ionitron',
@@ -16,7 +16,7 @@ import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
 })
 export class IonitronCommand extends Command {
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { getIonitronString, ionitronStatements } = await import('@ionic/cli-utils/lib/ionitron');
+    const { getIonitronString, ionitronStatements } = await import('pw-ionic-cli-utils/lib/ionitron');
 
     const locale = options['es'] ? 'es' : 'en';
     const localeStatements = ionitronStatements[locale];

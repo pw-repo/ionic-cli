@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
-import { FatalException } from '@ionic/cli-utils/lib/errors';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
+import { FatalException } from 'pw-ionic-cli-utils/lib/errors';
 
 @CommandMetadata({
   name: 'state',
@@ -11,7 +11,7 @@ import { FatalException } from '@ionic/cli-utils/lib/errors';
 })
 export class StateCommand extends Command {
   async run(): Promise<void> {
-    const { columnar, indent } = await import('@ionic/cli-utils/lib/utils/format');
+    const { columnar, indent } = await import('pw-ionic-cli-utils/lib/utils/format');
 
     const data = [
       [`${indent(4)}${chalk.green('ionic cordova platform save')}`, `save existing installed platforms to ${chalk.bold('config.xml')}`],

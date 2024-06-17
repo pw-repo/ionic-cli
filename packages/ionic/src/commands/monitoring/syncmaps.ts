@@ -2,11 +2,11 @@ import * as path from 'path';
 
 import chalk from 'chalk';
 
-import { APIResponseSuccess } from '@ionic/cli-utils/definitions';
+import { APIResponseSuccess } from 'pw-ionic-cli-utils/definitions';
 
-import { BACKEND_PRO, CommandLineInputs, CommandLineOptions } from '@ionic/cli-utils';
-import { isSuperAgentError } from '@ionic/cli-utils/guards';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
+import { BACKEND_PRO, CommandLineInputs, CommandLineOptions } from 'pw-ionic-cli-utils';
+import { isSuperAgentError } from 'pw-ionic-cli-utils/guards';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
 import { fsReadFile, pathExists, readDir } from '@ionic/cli-framework/utils/fs';
 
 @CommandMetadata({
@@ -29,7 +29,7 @@ export class MonitoringSyncSourcemapsCommand extends Command {
 
     const [ snapshotId ] = inputs;
 
-    const { ConfigXml } = await import('@ionic/cli-utils/lib/cordova/config');
+    const { ConfigXml } = await import('pw-ionic-cli-utils/lib/cordova/config');
     const conf = await ConfigXml.load(this.env.project.directory);
     const cordovaInfo = conf.getProjectInfo();
 
@@ -65,7 +65,7 @@ export class MonitoringSyncSourcemapsCommand extends Command {
   }
 
   async syncSourcemap(file: string, snapshotId: string, appVersion: string, commitHash: string, appId: string, token: string): Promise<void> {
-    const { createFatalAPIFormat } = await import('@ionic/cli-utils/lib/http');
+    const { createFatalAPIFormat } = await import('pw-ionic-cli-utils/lib/http');
 
     const { req } = await this.env.client.make('POST', `/monitoring/${appId}/sourcemaps`);
 
@@ -101,7 +101,7 @@ export class MonitoringSyncSourcemapsCommand extends Command {
   }
 
   async uploadSourcemap(res: APIResponseSuccess, file: string) {
-    const { createRequest } = await import('@ionic/cli-utils/lib/http');
+    const { createRequest } = await import('pw-ionic-cli-utils/lib/http');
 
     const r = <any>res;
 
@@ -142,7 +142,7 @@ export class MonitoringSyncSourcemapsCommand extends Command {
       message: 'Do full prod build?'
     });
 
-    const { build } = await import('@ionic/cli-utils/commands/build');
+    const { build } = await import('pw-ionic-cli-utils/commands/build');
     return await build(this.env, [], { _: [], prod: isProd });
   }
 }

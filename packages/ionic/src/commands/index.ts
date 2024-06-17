@@ -1,8 +1,8 @@
 import chalk from 'chalk';
 
-import { IRootNamespace, IonicEnvironment, KNOWN_BACKENDS } from '@ionic/cli-utils';
-import { CommandMap, Namespace, NamespaceMap } from '@ionic/cli-utils/lib/namespace';
-import { FatalException } from '@ionic/cli-utils/lib/errors';
+import { IRootNamespace, IonicEnvironment, KNOWN_BACKENDS } from 'pw-ionic-cli-utils';
+import { CommandMap, Namespace, NamespaceMap } from 'pw-ionic-cli-utils/lib/namespace';
+import { FatalException } from 'pw-ionic-cli-utils/lib/errors';
 
 export class IonicNamespace extends Namespace implements IRootNamespace {
   readonly root: true = true;
@@ -44,9 +44,9 @@ export class IonicNamespace extends Namespace implements IRootNamespace {
   ]);
 
   async runCommand(env: IonicEnvironment, pargv: string[]): Promise<void> {
-    const { metadataToMinimistOptions } = await import('@ionic/cli-utils/lib/utils/command');
-    const { parseArgs } = await import('@ionic/cli-utils/lib/init');
-    const { isCommand } = await import('@ionic/cli-utils/guards');
+    const { metadataToMinimistOptions } = await import('pw-ionic-cli-utils/lib/utils/command');
+    const { parseArgs } = await import('pw-ionic-cli-utils/lib/init');
+    const { isCommand } = await import('pw-ionic-cli-utils/guards');
 
     const config = await env.config.load();
 
@@ -54,7 +54,7 @@ export class IonicNamespace extends Namespace implements IRootNamespace {
     let [ depth, inputs, cmdOrNamespace ] = await this.locate(argv._);
 
     if (!isCommand(cmdOrNamespace)) {
-      const { showHelp } = await import('@ionic/cli-utils/lib/help');
+      const { showHelp } = await import('pw-ionic-cli-utils/lib/help');
       await env.telemetry.sendCommand('ionic help', argv._);
       return showHelp(env, argv._);
     }

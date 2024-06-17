@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 
-import { CommandLineInputs, CommandLineOptions } from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
+import { CommandLineInputs, CommandLineOptions } from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
 
 @CommandMetadata({
   name: 'list',
@@ -10,7 +10,7 @@ import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
 })
 export class DoctorListCommand extends Command {
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { Ailments } = await import('@ionic/cli-utils/lib/doctor/ailments');
+    const { Ailments } = await import('pw-ionic-cli-utils/lib/doctor/ailments');
 
     const ailmentIds = Ailments.ALL.map(Ailment => new Ailment().id);
 

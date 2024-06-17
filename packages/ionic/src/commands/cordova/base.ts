@@ -1,13 +1,13 @@
 import * as path from 'path';
 import chalk from 'chalk';
 
-import { CommandLineInputs, CommandLineOptions, CommandOption, CommandPreRun, IShellRunOptions } from '@ionic/cli-utils';
-import { Command } from '@ionic/cli-utils/lib/command';
-import { FatalException } from '@ionic/cli-utils/lib/errors';
+import { CommandLineInputs, CommandLineOptions, CommandOption, CommandPreRun, IShellRunOptions } from 'pw-ionic-cli-utils';
+import { Command } from 'pw-ionic-cli-utils/lib/command';
+import { FatalException } from 'pw-ionic-cli-utils/lib/errors';
 import { fsMkdir, pathExists } from '@ionic/cli-framework/utils/fs';
-import { BIND_ALL_ADDRESS, DEFAULT_DEV_LOGGER_PORT, DEFAULT_LIVERELOAD_PORT, DEFAULT_SERVER_PORT, LOCAL_ADDRESSES } from '@ionic/cli-utils/lib/serve';
-import { APP_SCRIPTS_OPTIONS } from '@ionic/cli-utils/lib/ionic-angular/app-scripts';
-import { CORDOVA_INTENT, checkCordova, filterArgumentsForCordova, generateBuildOptions } from '@ionic/cli-utils/lib/cordova/utils';
+import { BIND_ALL_ADDRESS, DEFAULT_DEV_LOGGER_PORT, DEFAULT_LIVERELOAD_PORT, DEFAULT_SERVER_PORT, LOCAL_ADDRESSES } from 'pw-ionic-cli-utils/lib/serve';
+import { APP_SCRIPTS_OPTIONS } from 'pw-ionic-cli-utils/lib/ionic-angular/app-scripts';
+import { CORDOVA_INTENT, checkCordova, filterArgumentsForCordova, generateBuildOptions } from 'pw-ionic-cli-utils/lib/cordova/utils';
 
 export const CORDOVA_RUN_COMMAND_OPTIONS: CommandOption[] = [
   {
@@ -102,8 +102,8 @@ export const CORDOVA_RUN_COMMAND_OPTIONS: CommandOption[] = [
 
 export abstract class CordovaCommand extends Command {
   async preRunChecks() {
-    const { ConfigXml } = await import('@ionic/cli-utils/lib/cordova/config');
-    const { prettyPath } = await import('@ionic/cli-utils/lib/utils/format');
+    const { ConfigXml } = await import('pw-ionic-cli-utils/lib/cordova/config');
+    const { prettyPath } = await import('pw-ionic-cli-utils/lib/utils/format');
 
     await checkCordova(this.env);
 
@@ -125,8 +125,8 @@ export abstract class CordovaCommand extends Command {
   }
 
   async runCordova(argList: string[], { fatalOnNotFound = false, truncateErrorOutput = 5000, ...options }: IShellRunOptions = {}): Promise<string> {
-    const { ERROR_SHELL_COMMAND_NOT_FOUND } = await import('@ionic/cli-utils/lib/shell');
-    const { pkgManagerArgs } = await import('@ionic/cli-utils/lib/utils/npm');
+    const { ERROR_SHELL_COMMAND_NOT_FOUND } = await import('pw-ionic-cli-utils/lib/shell');
+    const { pkgManagerArgs } = await import('pw-ionic-cli-utils/lib/utils/npm');
 
     try {
       return await this.env.shell.run('cordova', argList, { fatalOnNotFound, truncateErrorOutput, ...options });
@@ -150,7 +150,7 @@ export abstract class CordovaCommand extends Command {
 
   async checkForPlatformInstallation(runPlatform: string) {
     if (runPlatform) {
-      const { getPlatforms, installPlatform } = await import('@ionic/cli-utils/lib/cordova/project');
+      const { getPlatforms, installPlatform } = await import('pw-ionic-cli-utils/lib/cordova/project');
       const platforms = await getPlatforms(this.env.project.directory);
 
       if (!platforms.includes(runPlatform)) {
@@ -192,8 +192,8 @@ export class CordovaRunCommand extends CordovaCommand implements CommandPreRun {
   }
 
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { ConfigXml } = await import('@ionic/cli-utils/lib/cordova/config');
-    const { registerShutdownFunction } = await import('@ionic/cli-utils/lib/process');
+    const { ConfigXml } = await import('pw-ionic-cli-utils/lib/cordova/config');
+    const { registerShutdownFunction } = await import('pw-ionic-cli-utils/lib/process');
 
     if (!options['livereload'] && (options['consolelogs'] || options['serverlogs'])) {
       this.env.log.info(`${chalk.green('--consolelogs')} or ${chalk.green('--serverlogs')} detected, using ${chalk.green('--livereload')}`);
@@ -210,7 +210,7 @@ export class CordovaRunCommand extends CordovaCommand implements CommandPreRun {
     });
 
     if (isLiveReload) {
-      const { serve } = await import('@ionic/cli-utils/commands/serve');
+      const { serve } = await import('pw-ionic-cli-utils/commands/serve');
       const serverDetails = await serve(this.env, inputs, generateBuildOptions(this.metadata, options));
 
       if (serverDetails.externallyAccessible === false) {
@@ -221,7 +221,7 @@ export class CordovaRunCommand extends CordovaCommand implements CommandPreRun {
       conf.writeContentSrc(`${serverDetails.protocol || 'http'}://${serverDetails.externalAddress}:${serverDetails.port}`);
       await conf.save();
     } else {
-      const { build } = await import('@ionic/cli-utils/commands/build');
+      const { build } = await import('pw-ionic-cli-utils/commands/build');
       await build(this.env, inputs, generateBuildOptions(this.metadata, options));
     }
 

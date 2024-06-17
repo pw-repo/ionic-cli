@@ -1,8 +1,8 @@
 import chalk from 'chalk';
 
-import { BACKEND_LEGACY, BACKEND_PRO, CommandLineInputs, CommandLineOptions, CommandPreRun } from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
-import { SessionException } from '@ionic/cli-utils/lib/errors';
+import { BACKEND_LEGACY, BACKEND_PRO, CommandLineInputs, CommandLineOptions, CommandPreRun } from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
+import { SessionException } from 'pw-ionic-cli-utils/lib/errors';
 import { validators } from '@ionic/cli-framework/lib';
 
 @CommandMetadata({

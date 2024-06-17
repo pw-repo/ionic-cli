@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 
-import { CommandMetadata } from '@ionic/cli-utils/lib/command';
+import { CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
 
 import { CORDOVA_RUN_COMMAND_OPTIONS, CordovaRunCommand } from './base';
 

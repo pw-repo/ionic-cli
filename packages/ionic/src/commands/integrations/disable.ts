@@ -1,9 +1,9 @@
 import chalk from 'chalk';
 
 import { contains } from '@ionic/cli-framework/lib';
-import { CommandLineInputs, CommandLineOptions } from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
-import { INTEGRATIONS, disableIntegration } from '@ionic/cli-utils/lib/integrations';
+import { CommandLineInputs, CommandLineOptions } from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
+import { INTEGRATIONS, disableIntegration } from 'pw-ionic-cli-utils/lib/integrations';
 
 @CommandMetadata({
   name: 'disable',

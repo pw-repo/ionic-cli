@@ -1,10 +1,10 @@
 import chalk from 'chalk';
 
 import { contains } from '@ionic/cli-framework/lib';
-import { BACKEND_LEGACY, CommandLineInputs, CommandLineOptions, CommandPreRun, PackageBuild } from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
-import { APP_SCRIPTS_INTENT, APP_SCRIPTS_OPTIONS } from '@ionic/cli-utils/lib/ionic-angular/app-scripts';
-import { FatalException } from '@ionic/cli-utils/lib/errors';
+import { BACKEND_LEGACY, CommandLineInputs, CommandLineOptions, CommandPreRun, PackageBuild } from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
+import { APP_SCRIPTS_INTENT, APP_SCRIPTS_OPTIONS } from 'pw-ionic-cli-utils/lib/ionic-angular/app-scripts';
+import { FatalException } from 'pw-ionic-cli-utils/lib/errors';
 
 import { DEPRECATION_NOTICE } from './common';
 
@@ -50,8 +50,8 @@ Full documentation can be found here: ${chalk.bold('https://docs.ionic.io/servic
 })
 export class PackageBuildCommand extends Command implements CommandPreRun {
   async preRun(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { PackageClient } = await import('@ionic/cli-utils/lib/package');
-    const { SecurityClient } = await import('@ionic/cli-utils/lib/security');
+    const { PackageClient } = await import('pw-ionic-cli-utils/lib/package');
+    const { SecurityClient } = await import('pw-ionic-cli-utils/lib/security');
 
     const token = await this.env.session.getAppUserToken();
     const pkg = new PackageClient(token, this.env.client);
@@ -100,12 +100,12 @@ export class PackageBuildCommand extends Command implements CommandPreRun {
   }
 
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { upload } = await import('@ionic/cli-utils/lib/upload');
-    const { DeployClient } = await import('@ionic/cli-utils/lib/deploy');
-    const { PackageClient } = await import('@ionic/cli-utils/lib/package');
-    const { SecurityClient } = await import('@ionic/cli-utils/lib/security');
-    const { filterOptionsByIntent } = await import('@ionic/cli-utils/lib/utils/command');
-    const { createArchive } = await import('@ionic/cli-utils/lib/utils/archive');
+    const { upload } = await import('pw-ionic-cli-utils/lib/upload');
+    const { DeployClient } = await import('pw-ionic-cli-utils/lib/deploy');
+    const { PackageClient } = await import('pw-ionic-cli-utils/lib/package');
+    const { SecurityClient } = await import('pw-ionic-cli-utils/lib/security');
+    const { filterOptionsByIntent } = await import('pw-ionic-cli-utils/lib/utils/command');
+    const { createArchive } = await import('pw-ionic-cli-utils/lib/utils/archive');
 
     let [ platform ] = <[PackageBuild['platform']]>inputs;
     let { prod, release, profile, note } = options;
@@ -143,7 +143,7 @@ export class PackageBuildCommand extends Command implements CommandPreRun {
 
     this.env.tasks.end();
 
-    const { build } = await import('@ionic/cli-utils/commands/build');
+    const { build } = await import('pw-ionic-cli-utils/commands/build');
     await build(this.env, inputs, filterOptionsByIntent(this.metadata, options, APP_SCRIPTS_INTENT));
 
     const snapshotRequest = await upload(this.env, { note });

@@ -10,9 +10,9 @@ import {
   GithubBranch,
   GithubRepo,
   isSuperAgentError
-} from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
-import { FatalException } from '@ionic/cli-utils/lib/errors';
+} from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
+import { FatalException } from 'pw-ionic-cli-utils/lib/errors';
 
 const CHOICE_CREATE_NEW_APP = 'createNewApp';
 const CHOICE_NEVERMIND = 'nevermind';
@@ -89,7 +89,7 @@ export class LinkCommand extends Command implements CommandPreRun {
   }
 
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { promptToLogin } = await import('@ionic/cli-utils/lib/session');
+    const { promptToLogin } = await import('pw-ionic-cli-utils/lib/session');
 
     let [ appId ] = inputs;
     let { create, name } = options;
@@ -199,13 +199,13 @@ export class LinkCommand extends Command implements CommandPreRun {
   }
 
   private async getAppClient() {
-    const { App } = await import('@ionic/cli-utils/lib/app');
+    const { App } = await import('pw-ionic-cli-utils/lib/app');
     const token = await this.env.session.getUserToken();
     return new App(token, this.env.client);
   }
 
   private async getUserClient() {
-    const { UserClient } = await import('@ionic/cli-utils/lib/user');
+    const { UserClient } = await import('pw-ionic-cli-utils/lib/user');
     const token = await this.env.session.getUserToken();
     return new UserClient({ token, client: this.env.client });
   }

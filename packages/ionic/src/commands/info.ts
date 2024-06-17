@@ -3,8 +3,8 @@ import * as path from 'path';
 import chalk from 'chalk';
 
 import { strcmp } from '@ionic/cli-framework/utils/string';
-import { CommandLineInputs, CommandLineOptions, InfoHookItem } from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
+import { CommandLineInputs, CommandLineOptions, InfoHookItem } from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
 
 @CommandMetadata({
   name: 'info',
@@ -13,7 +13,7 @@ import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
 })
 export class InfoCommand extends Command {
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { columnar } = await import('@ionic/cli-utils/lib/utils/format');
+    const { columnar } = await import('pw-ionic-cli-utils/lib/utils/format');
 
     const task = this.env.tasks.next('Gathering environment info');
 

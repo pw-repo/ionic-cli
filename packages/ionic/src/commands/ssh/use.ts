@@ -1,10 +1,10 @@
 import chalk from 'chalk';
 
 import { validators } from '@ionic/cli-framework/lib';
-import { BACKEND_PRO, CommandLineInputs, CommandLineOptions } from '@ionic/cli-utils';
-import { CommandMetadata } from '@ionic/cli-utils/lib/command';
+import { BACKEND_PRO, CommandLineInputs, CommandLineOptions } from 'pw-ionic-cli-utils';
+import { CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
 import { fileToString, fsWriteFile } from '@ionic/cli-framework/utils/fs';
-import { FatalException } from '@ionic/cli-utils/lib/errors';
+import { FatalException } from 'pw-ionic-cli-utils/lib/errors';
 
 import { SSHBaseCommand } from './base';
 
@@ -23,9 +23,9 @@ import { SSHBaseCommand } from './base';
 })
 export class SSHUseCommand extends SSHBaseCommand {
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { expandPath, prettyPath } = await import('@ionic/cli-utils/lib/utils/format');
-    const { ERROR_SSH_INVALID_PRIVKEY, ERROR_SSH_MISSING_PRIVKEY, validatePrivateKey } = await import('@ionic/cli-utils/lib/ssh');
-    const { ensureHostAndKeyPath, getConfigPath } = await import('@ionic/cli-utils/lib/ssh-config');
+    const { expandPath, prettyPath } = await import('pw-ionic-cli-utils/lib/utils/format');
+    const { ERROR_SSH_INVALID_PRIVKEY, ERROR_SSH_MISSING_PRIVKEY, validatePrivateKey } = await import('pw-ionic-cli-utils/lib/ssh');
+    const { ensureHostAndKeyPath, getConfigPath } = await import('pw-ionic-cli-utils/lib/ssh-config');
 
     const keyPath = expandPath(inputs[0]);
 
@@ -47,7 +47,7 @@ export class SSHUseCommand extends SSHBaseCommand {
       }
     }
 
-    const { SSHConfig } = await import('@ionic/cli-utils/lib/ssh-config');
+    const { SSHConfig } = await import('pw-ionic-cli-utils/lib/ssh-config');
     const sshConfigPath = getConfigPath();
     const text1 = await fileToString(sshConfigPath);
     const conf = SSHConfig.parse(text1);
@@ -58,7 +58,7 @@ export class SSHUseCommand extends SSHBaseCommand {
       this.env.log.info(`${chalk.bold(prettyPath(keyPath))} is already your active SSH key.`);
       return;
     } else {
-      const { diffPatch } = await import('@ionic/cli-utils/lib/diff');
+      const { diffPatch } = await import('pw-ionic-cli-utils/lib/diff');
       const diff = await diffPatch(sshConfigPath, text1, text2);
 
       this.env.log.msg(diff);

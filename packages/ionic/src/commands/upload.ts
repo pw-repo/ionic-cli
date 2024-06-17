@@ -1,8 +1,8 @@
 import chalk from 'chalk';
 
-import { BACKEND_LEGACY, CommandLineInput, CommandLineInputs, CommandLineOptions, CommandPreRun } from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
-import { APP_SCRIPTS_OPTIONS } from '@ionic/cli-utils/lib/ionic-angular/app-scripts';
+import { BACKEND_LEGACY, CommandLineInput, CommandLineInputs, CommandLineOptions, CommandPreRun } from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
+import { APP_SCRIPTS_OPTIONS } from 'pw-ionic-cli-utils/lib/ionic-angular/app-scripts';
 
 const DEPRECATION_NOTICE = `Ionic Cloud is deprecated and will reach end-of-life on January 31st, 2018. This command will not be supported afterwards. Ionic Pro takes a different approach to uploading. See the Getting Started documentation for details: ${chalk.bold('https://ionicframework.com/docs/pro/basics/getting-started/')}`;
 
@@ -81,8 +81,8 @@ export class UploadCommand extends Command implements CommandPreRun {
   }
 
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { promptToLogin } = await import('@ionic/cli-utils/lib/session');
-    const { upload } = await import('@ionic/cli-utils/lib/upload');
+    const { promptToLogin } = await import('pw-ionic-cli-utils/lib/session');
+    const { upload } = await import('pw-ionic-cli-utils/lib/upload');
 
     this.env.log.warn(DEPRECATION_NOTICE);
 
@@ -95,7 +95,7 @@ export class UploadCommand extends Command implements CommandPreRun {
     }
 
     if (options['build']) {
-      const { build } = await import('@ionic/cli-utils/commands/build');
+      const { build } = await import('pw-ionic-cli-utils/commands/build');
       await build(this.env, inputs, options);
     }
 

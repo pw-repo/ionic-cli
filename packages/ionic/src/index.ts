@@ -3,18 +3,18 @@ import * as util from 'util';
 
 import chalk from 'chalk';
 
-import { IonicEnvironment, RootPlugin, generateIonicEnvironment } from '@ionic/cli-utils';
-import { Exception } from '@ionic/cli-utils/lib/errors';
-import { mapLegacyCommand, modifyArguments, parseArgs } from '@ionic/cli-utils/lib/init';
+import { IonicEnvironment, RootPlugin, generateIonicEnvironment } from 'pw-ionic-cli-utils';
+import { Exception } from 'pw-ionic-cli-utils/lib/errors';
+import { mapLegacyCommand, modifyArguments, parseArgs } from 'pw-ionic-cli-utils/lib/init';
 import { pathExists } from '@ionic/cli-framework/utils/fs';
-import { isExitCodeException } from '@ionic/cli-utils/guards';
+import { isExitCodeException } from 'pw-ionic-cli-utils/guards';
 
 import { IonicNamespace } from './commands';
 
 export const namespace = new IonicNamespace();
 
 export async function generateRootPlugin(): Promise<RootPlugin> {
-  const { getPluginMeta } = await import('@ionic/cli-utils/lib/plugins');
+  const { getPluginMeta } = await import('pw-ionic-cli-utils/lib/plugins');
 
   return {
     namespace,
@@ -30,7 +30,7 @@ export async function run(pargv: string[], env: { [k: string]: string; }) {
   pargv = modifyArguments(pargv.slice(2));
   env['IONIC_CLI_LIB'] = __filename;
 
-  const { isSuperAgentError } = await import('@ionic/cli-utils/guards');
+  const { isSuperAgentError } = await import('pw-ionic-cli-utils/guards');
   const { isValidationErrorArray } = await import('@ionic/cli-framework/guards');
 
   const plugin = await generateRootPlugin();
@@ -75,7 +75,7 @@ export async function run(pargv: string[], env: { [k: string]: string; }) {
 
         if (confirm) {
           ienv.log.info('Installing dependencies may take several minutes!');
-          const { pkgManagerArgs } = await import('@ionic/cli-utils/lib/utils/npm');
+          const { pkgManagerArgs } = await import('pw-ionic-cli-utils/lib/utils/npm');
           const [ installer, ...installerArgs ] = await pkgManagerArgs(ienv, { command: 'install' });
           await ienv.shell.run(installer, installerArgs, {});
         }
@@ -90,7 +90,7 @@ export async function run(pargv: string[], env: { [k: string]: string; }) {
       ienv.log.msg(`The ${chalk.green(argv._[0])} command has been renamed. To find out more, run:\n\n` +
                    `  ${chalk.green(`ionic ${foundCommand} --help`)}\n\n`);
     } else {
-      const { loadPlugins } = await import ('@ionic/cli-utils/lib/plugins');
+      const { loadPlugins } = await import ('pw-ionic-cli-utils/lib/plugins');
 
       try {
         await loadPlugins(ienv);
@@ -132,7 +132,7 @@ export async function run(pargv: string[], env: { [k: string]: string; }) {
       }
       ienv.log.msg(`Use the ${chalk.green('--help')} flag for more details.`);
     } else if (isSuperAgentError(err)) {
-      const { formatSuperAgentError } = await import('@ionic/cli-utils/lib/http');
+      const { formatSuperAgentError } = await import('pw-ionic-cli-utils/lib/http');
       ienv.log.msg(formatSuperAgentError(err));
     } else if (err.code && err.code === 'ENOTFOUND' || err.code === 'ECONNREFUSED') {
       ienv.log.error(

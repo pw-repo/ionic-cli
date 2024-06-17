@@ -1,8 +1,8 @@
 import chalk from 'chalk';
 
 import { contains } from '@ionic/cli-framework/lib';
-import { CommandLineInputs, CommandLineOptions, CommandPreRun } from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
+import { CommandLineInputs, CommandLineOptions, CommandPreRun } from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
 
 @CommandMetadata({
   name: 'telemetry',

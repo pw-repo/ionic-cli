@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 
-import { CommandLineInputs, CommandLineOptions } from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
+import { CommandLineInputs, CommandLineOptions } from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
 
 @CommandMetadata({
   name: 'get',
@@ -44,7 +44,7 @@ This command attempts to sanitize config output for known sensitive fields, such
 })
 export class ConfigGetCommand extends Command {
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { get } = await import('@ionic/cli-utils/commands/config/get');
+    const { get } = await import('pw-ionic-cli-utils/commands/config/get');
     await get(this.env, inputs, options);
   }
 }

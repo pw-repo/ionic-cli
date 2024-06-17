@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 
-import { CommandLineInputs, CommandLineOptions } from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
+import { CommandLineInputs, CommandLineOptions } from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
 
 @CommandMetadata({
   name: 'set',
@@ -53,7 +53,7 @@ By default, if ${chalk.green('property')} exists and is an object or an array, t
 })
 export class ConfigSetCommand extends Command {
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { set } = await import('@ionic/cli-utils/commands/config/set');
+    const { set } = await import('pw-ionic-cli-utils/commands/config/set');
     await set(this.env, inputs, options);
   }
 }

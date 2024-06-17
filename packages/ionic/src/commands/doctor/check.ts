@@ -1,9 +1,9 @@
 import chalk from 'chalk';
 
 import { contains, validate } from '@ionic/cli-framework/lib';
-import { CommandLineInputs, CommandLineOptions } from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
-import { FatalException } from '@ionic/cli-utils/lib/errors';
+import { CommandLineInputs, CommandLineOptions } from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
+import { FatalException } from 'pw-ionic-cli-utils/lib/errors';
 
 @CommandMetadata({
   name: 'check',
@@ -21,8 +21,8 @@ export class DoctorCheckCommand extends Command {
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
     const [ id ] = inputs;
 
-    const { detectAndTreatAilment, registry, treatAilments } = await import('@ionic/cli-utils/lib/doctor/index');
-    const { Ailments } = await import('@ionic/cli-utils/lib/doctor/ailments');
+    const { detectAndTreatAilment, registry, treatAilments } = await import('pw-ionic-cli-utils/lib/doctor/index');
+    const { Ailments } = await import('pw-ionic-cli-utils/lib/doctor/ailments');
 
     const ailmentIds = Ailments.ALL.map(Ailment => new Ailment().id);
 

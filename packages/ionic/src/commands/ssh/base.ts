@@ -1,10 +1,10 @@
 import chalk from 'chalk';
 
-import { Command } from '@ionic/cli-utils/lib/command';
+import { Command } from 'pw-ionic-cli-utils/lib/command';
 
 export abstract class SSHBaseCommand extends Command {
   async checkForOpenSSH() {
-    const { ERROR_SHELL_COMMAND_NOT_FOUND } = await import('@ionic/cli-utils/lib/shell');
+    const { ERROR_SHELL_COMMAND_NOT_FOUND } = await import('pw-ionic-cli-utils/lib/shell');
 
     try {
       await this.env.shell.run('ssh', ['-V'], { showCommand: false, fatalOnNotFound: false });

@@ -1,8 +1,8 @@
 import chalk from 'chalk';
 
-import { BACKEND_PRO, CommandLineInputs, CommandLineOptions } from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
-import { FatalException } from '@ionic/cli-utils/lib/errors';
+import { BACKEND_PRO, CommandLineInputs, CommandLineOptions } from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
+import { FatalException } from 'pw-ionic-cli-utils/lib/errors';
 
 @CommandMetadata({
   name: 'remote',
@@ -12,8 +12,8 @@ import { FatalException } from '@ionic/cli-utils/lib/errors';
 })
 export class GitRemoteCommand extends Command {
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { App } = await import('@ionic/cli-utils/lib/app');
-    const { addIonicRemote, getIonicRemote, initializeRepo, isRepoInitialized, setIonicRemote } = await import('@ionic/cli-utils/lib/git');
+    const { App } = await import('pw-ionic-cli-utils/lib/app');
+    const { addIonicRemote, getIonicRemote, initializeRepo, isRepoInitialized, setIonicRemote } = await import('pw-ionic-cli-utils/lib/git');
 
     const token = await this.env.session.getUserToken();
     const appId = await this.env.project.loadAppId();

@@ -1,8 +1,8 @@
 import chalk from 'chalk';
 
-import { CommandLineInputs, CommandLineOptions, CommandPreRun } from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
-import { APP_SCRIPTS_OPTIONS } from '@ionic/cli-utils/lib/ionic-angular/app-scripts';
+import { CommandLineInputs, CommandLineOptions, CommandPreRun } from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
+import { APP_SCRIPTS_OPTIONS } from 'pw-ionic-cli-utils/lib/ionic-angular/app-scripts';
 
 @CommandMetadata({
   name: 'build',
@@ -34,7 +34,7 @@ export class BuildCommand extends Command implements CommandPreRun {
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
     const [ platform ] = inputs;
 
-    const { build } = await import('@ionic/cli-utils/commands/build');
+    const { build } = await import('pw-ionic-cli-utils/commands/build');
     await build(this.env, inputs, options);
 
     const project = await this.env.project.load();

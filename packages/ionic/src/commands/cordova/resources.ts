@@ -8,10 +8,10 @@ import {
   ResourcesConfig,
   ResourcesImageConfig,
   SourceImage,
-} from '@ionic/cli-utils';
+} from 'pw-ionic-cli-utils';
 
-import { CommandMetadata } from '@ionic/cli-utils/lib/command';
-import { FatalException } from '@ionic/cli-utils/lib/errors';
+import { CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
+import { FatalException } from 'pw-ionic-cli-utils/lib/errors';
 import { cacheFileChecksum, pathExists } from '@ionic/cli-framework/utils/fs';
 
 import { CordovaCommand } from './base';
@@ -74,7 +74,7 @@ export class ResourcesCommand extends CordovaCommand implements CommandPreRun {
   async preRun(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
     await this.preRunChecks();
 
-    const { promptToLogin } = await import('@ionic/cli-utils/lib/session');
+    const { promptToLogin } = await import('pw-ionic-cli-utils/lib/session');
 
     const isLoggedIn = await this.env.session.isLoggedIn();
 
@@ -85,9 +85,9 @@ export class ResourcesCommand extends CordovaCommand implements CommandPreRun {
   }
 
   public async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { ConfigXml } = await import('@ionic/cli-utils/lib/cordova/config');
-    const { getPlatforms, installPlatform } = await import('@ionic/cli-utils/lib/cordova/project');
-    const { prettyPath } = await import('@ionic/cli-utils/lib/utils/format');
+    const { ConfigXml } = await import('pw-ionic-cli-utils/lib/cordova/config');
+    const { getPlatforms, installPlatform } = await import('pw-ionic-cli-utils/lib/cordova/project');
+    const { prettyPath } = await import('pw-ionic-cli-utils/lib/utils/format');
 
     const {
       RESOURCES,
@@ -98,7 +98,7 @@ export class ResourcesCommand extends CordovaCommand implements CommandPreRun {
       getSourceImages,
       transformResourceImage,
       uploadSourceImages,
-    } = await import('@ionic/cli-utils/lib/cordova/resources');
+    } = await import('pw-ionic-cli-utils/lib/cordova/resources');
 
     const [ platform ] = inputs;
     const { force } = options;

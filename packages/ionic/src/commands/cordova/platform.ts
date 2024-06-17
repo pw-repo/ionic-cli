@@ -1,9 +1,9 @@
 import chalk from 'chalk';
 
 import { contains, validate, validators } from '@ionic/cli-framework/lib';
-import { CommandLineInputs, CommandLineOptions, CommandPreRun } from '@ionic/cli-utils';
-import { CommandMetadata } from '@ionic/cli-utils/lib/command';
-import { FatalException } from '@ionic/cli-utils/lib/errors';
+import { CommandLineInputs, CommandLineOptions, CommandPreRun } from 'pw-ionic-cli-utils';
+import { CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
+import { FatalException } from 'pw-ionic-cli-utils/lib/errors';
 
 import { CordovaCommand } from './base';
 
@@ -68,8 +68,8 @@ export class PlatformCommand extends CordovaCommand implements CommandPreRun {
   }
 
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { getPlatforms } = await import('@ionic/cli-utils/lib/cordova/project');
-    const { filterArgumentsForCordova } = await import('@ionic/cli-utils/lib/cordova/utils');
+    const { getPlatforms } = await import('pw-ionic-cli-utils/lib/cordova/project');
+    const { filterArgumentsForCordova } = await import('pw-ionic-cli-utils/lib/cordova/utils');
 
     let [ action, platformName ] = inputs;
 
@@ -87,7 +87,7 @@ export class PlatformCommand extends CordovaCommand implements CommandPreRun {
     }
 
     if (action === 'add') {
-      const { installPlatform } = await import('@ionic/cli-utils/lib/cordova/project');
+      const { installPlatform } = await import('pw-ionic-cli-utils/lib/cordova/project');
       await installPlatform(this.env, platformName);
     } else {
       const response = await this.runCordova(optionList, { showExecution: true });

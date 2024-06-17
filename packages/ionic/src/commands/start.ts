@@ -3,12 +3,12 @@ import * as path from 'path';
 import chalk from 'chalk';
 
 import { validators } from '@ionic/cli-framework/lib';
-import { BACKEND_LEGACY, BACKEND_PRO, CommandLineInputs, CommandLineOptions, CommandPreRun, StarterManifest, StarterTemplate } from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
-import { FatalException } from '@ionic/cli-utils/lib/errors';
+import { BACKEND_LEGACY, BACKEND_PRO, CommandLineInputs, CommandLineOptions, CommandPreRun, StarterManifest, StarterTemplate } from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
+import { FatalException } from 'pw-ionic-cli-utils/lib/errors';
 import { fsMkdir, fsUnlink, pathExists, removeDirectory } from '@ionic/cli-framework/utils/fs';
-import { PROJECT_FILE, Project } from '@ionic/cli-utils/lib/project';
-import { emoji } from '@ionic/cli-utils/lib/utils/emoji';
+import { PROJECT_FILE, Project } from 'pw-ionic-cli-utils/lib/project';
+import { emoji } from 'pw-ionic-cli-utils/lib/utils/emoji';
 
 @CommandMetadata({
   name: 'start',
@@ -98,8 +98,8 @@ ${chalk.cyan('[1]')}: ${chalk.bold('https://ionicframework.com/docs/cli/starters
 })
 export class StartCommand extends Command implements CommandPreRun {
   async preRun(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { STARTER_TEMPLATES, getStarterTemplateTextList } = await import('@ionic/cli-utils/lib/start');
-    const { promptToLogin } = await import('@ionic/cli-utils/lib/session');
+    const { STARTER_TEMPLATES, getStarterTemplateTextList } = await import('pw-ionic-cli-utils/lib/start');
+    const { promptToLogin } = await import('pw-ionic-cli-utils/lib/session');
 
     // If the action is list then lets just end here.
     if (options['list']) {
@@ -181,7 +181,7 @@ export class StartCommand extends Command implements CommandPreRun {
 
     if (!inputs[0]) {
       if (proAppId) {
-        const { App } = await import('@ionic/cli-utils/lib/app');
+        const { App } = await import('pw-ionic-cli-utils/lib/app');
         const token = await this.env.session.getUserToken();
         const appLoader = new App(token, this.env.client);
         const app = await appLoader.load(proAppId);
@@ -223,8 +223,8 @@ export class StartCommand extends Command implements CommandPreRun {
   }
 
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { getHelloText } = await import('@ionic/cli-utils/lib/start');
-    const { pkgManagerArgs } = await import('@ionic/cli-utils/lib/utils/npm');
+    const { getHelloText } = await import('pw-ionic-cli-utils/lib/start');
+    const { pkgManagerArgs } = await import('pw-ionic-cli-utils/lib/utils/npm');
 
     const [ name, template ] = inputs;
     const displayName = options['display-name'] ? String(options['display-name']) : name;
@@ -389,8 +389,8 @@ export class StartCommand extends Command implements CommandPreRun {
   }
 
   async ensureDirectory(projectName: string, projectDir: string) {
-    const { isSafeToCreateProjectIn } = await import('@ionic/cli-utils/lib/start');
-    const { prettyPath } = await import('@ionic/cli-utils/lib/utils/format');
+    const { isSafeToCreateProjectIn } = await import('pw-ionic-cli-utils/lib/start');
+    const { prettyPath } = await import('pw-ionic-cli-utils/lib/utils/format');
 
     const projectExists = await pathExists(projectName);
 
@@ -421,7 +421,7 @@ export class StartCommand extends Command implements CommandPreRun {
   }
 
   async findStarterTemplate(template: string, type: string): Promise<StarterTemplate> {
-    const { STARTER_BASE_URL, STARTER_TEMPLATES, getStarterList } = await import('@ionic/cli-utils/lib/start');
+    const { STARTER_BASE_URL, STARTER_TEMPLATES, getStarterList } = await import('pw-ionic-cli-utils/lib/start');
     const starterTemplate = STARTER_TEMPLATES.find(t => t.type === type && t.name === template);
 
     if (starterTemplate) {
@@ -451,7 +451,7 @@ export class StartCommand extends Command implements CommandPreRun {
 
   async validateName(name: string) {
     const { isValidPackageName } = await import('@ionic/cli-framework/utils/npm');
-    const { isProjectNameValid } = await import('@ionic/cli-utils/lib/start');
+    const { isProjectNameValid } = await import('pw-ionic-cli-utils/lib/start');
 
     if (!isProjectNameValid(name)) {
       throw new FatalException(`Please name your Ionic project something meaningful other than ${chalk.green(name)}`);
@@ -466,8 +466,8 @@ export class StartCommand extends Command implements CommandPreRun {
   }
 
   async loadManifest(manifestPath: string): Promise<StarterManifest | undefined> {
-    const { prettyPath } = await import('@ionic/cli-utils/lib/utils/format');
-    const { readStarterManifest } = await import('@ionic/cli-utils/lib/start');
+    const { prettyPath } = await import('pw-ionic-cli-utils/lib/utils/format');
+    const { readStarterManifest } = await import('pw-ionic-cli-utils/lib/start');
 
     try {
       return await readStarterManifest(manifestPath);
@@ -485,7 +485,7 @@ export class StartCommand extends Command implements CommandPreRun {
   }
 
   async personalizeApp(projectDir: string, name: string, displayName: string) {
-    const { updatePackageJsonForCli } = await import('@ionic/cli-utils/lib/start');
+    const { updatePackageJsonForCli } = await import('pw-ionic-cli-utils/lib/start');
 
     const project = await this.env.project.load();
 
@@ -499,7 +499,7 @@ export class StartCommand extends Command implements CommandPreRun {
   }
 
   async personalizeCordovaApp(projectDir: string, name: string, bundleId?: string) {
-    const { ConfigXml } = await import('@ionic/cli-utils/lib/cordova/config');
+    const { ConfigXml } = await import('pw-ionic-cli-utils/lib/cordova/config');
     const conf = await ConfigXml.load(projectDir);
     conf.setName(name);
 
@@ -511,8 +511,8 @@ export class StartCommand extends Command implements CommandPreRun {
   }
 
   async downloadStarterTemplate(projectDir: string, starterTemplate: StarterTemplate) {
-    const { download } = await import('@ionic/cli-utils/lib/http');
-    const { createTarExtraction } = await import('@ionic/cli-utils/lib/utils/archive');
+    const { download } = await import('pw-ionic-cli-utils/lib/http');
+    const { createTarExtraction } = await import('pw-ionic-cli-utils/lib/utils/archive');
 
     const task = this.env.tasks.next(`Downloading and extracting ${chalk.green(starterTemplate.name.toString())} starter`);
     const ws = await createTarExtraction({ cwd: projectDir, strip: starterTemplate.strip ? 1 : 0 });
@@ -524,14 +524,14 @@ export class StartCommand extends Command implements CommandPreRun {
   }
 
   async showNextSteps(projectDir: string, linkConfirmed: boolean) {
-    const { prettyPath } = await import('@ionic/cli-utils/lib/utils/format');
+    const { prettyPath } = await import('pw-ionic-cli-utils/lib/utils/format');
 
     const config = await this.env.config.load();
     const project = await this.env.project.load();
 
     let app;
     if (project.app_id) {
-      const { App } = await import('@ionic/cli-utils/lib/app');
+      const { App } = await import('pw-ionic-cli-utils/lib/app');
       const token = await this.env.session.getUserToken();
       const appLoader = new App(token, this.env.client);
       app = await appLoader.load(project.app_id);

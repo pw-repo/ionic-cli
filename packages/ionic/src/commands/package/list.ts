@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 
-import { BACKEND_LEGACY, CommandLineInputs, CommandLineOptions, PackageBuild } from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
+import { BACKEND_LEGACY, CommandLineInputs, CommandLineOptions, PackageBuild } from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
 
 import { DEPRECATION_NOTICE } from './common';
 
@@ -29,8 +29,8 @@ Full documentation can be found here: ${chalk.bold('https://docs.ionic.io/servic
 })
 export class PackageListCommand extends Command {
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { PackageClient } = await import('@ionic/cli-utils/lib/package');
-    const { columnar } = await import('@ionic/cli-utils/lib/utils/format');
+    const { PackageClient } = await import('pw-ionic-cli-utils/lib/package');
+    const { columnar } = await import('pw-ionic-cli-utils/lib/utils/format');
 
     const { json } = options;
 

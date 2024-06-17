@@ -1,9 +1,9 @@
 import chalk from 'chalk';
 
-import { CommandLineInputs, CommandLineOptions, CommandPreRun } from '@ionic/cli-utils';
+import { CommandLineInputs, CommandLineOptions, CommandPreRun } from 'pw-ionic-cli-utils';
 import { contains, validators } from '@ionic/cli-framework/lib';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
-import { FatalException } from '@ionic/cli-utils/lib/errors';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
+import { FatalException } from 'pw-ionic-cli-utils/lib/errors';
 
 const TYPE_CHOICES = ['component', 'directive', 'page', 'pipe', 'provider', 'tabs'];
 
@@ -89,7 +89,7 @@ export class GenerateCommand extends Command implements CommandPreRun {
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
     const [ type, name ] = inputs;
 
-    const { generate } = await import('@ionic/cli-utils/lib/ionic-angular/generate');
+    const { generate } = await import('pw-ionic-cli-utils/lib/ionic-angular/generate');
     await generate({ env: this.env, inputs, options });
 
     this.env.log.ok(`Generated a ${chalk.bold(type)}${type === 'tabs' ? ' page' : ''} named ${chalk.bold(name)}!`);

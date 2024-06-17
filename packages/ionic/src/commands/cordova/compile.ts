@@ -1,8 +1,8 @@
 import chalk from 'chalk';
 
-import { CommandLineInputs, CommandLineOptions, CommandPreRun } from '@ionic/cli-utils';
-import { CommandMetadata } from '@ionic/cli-utils/lib/command';
-import { CORDOVA_INTENT, filterArgumentsForCordova } from '@ionic/cli-utils/lib/cordova/utils';
+import { CommandLineInputs, CommandLineOptions, CommandPreRun } from 'pw-ionic-cli-utils';
+import { CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
+import { CORDOVA_INTENT, filterArgumentsForCordova } from 'pw-ionic-cli-utils/lib/cordova/utils';
 
 import { CordovaCommand } from './base';
 

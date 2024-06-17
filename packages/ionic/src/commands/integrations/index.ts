@@ -1,4 +1,4 @@
-import { CommandMap, Namespace } from '@ionic/cli-utils/lib/namespace';
+import { CommandMap, Namespace } from 'pw-ionic-cli-utils/lib/namespace';
 
 export class IntegrationsNamespace extends Namespace {
   name = 'integrations';

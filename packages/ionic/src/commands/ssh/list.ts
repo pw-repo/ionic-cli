@@ -1,8 +1,8 @@
 import chalk from 'chalk';
 
-import { BACKEND_PRO, CommandLineInputs, CommandLineOptions, CommandPreRun } from '@ionic/cli-utils';
-import { isSSHKeyListResponse } from '@ionic/cli-utils/guards';
-import { CommandMetadata } from '@ionic/cli-utils/lib/command';
+import { BACKEND_PRO, CommandLineInputs, CommandLineOptions, CommandPreRun } from 'pw-ionic-cli-utils';
+import { isSSHKeyListResponse } from 'pw-ionic-cli-utils/guards';
+import { CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
 
 import { SSHBaseCommand } from './base';
 
@@ -18,15 +18,15 @@ export class SSHListCommand extends SSHBaseCommand implements CommandPreRun {
   }
 
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { createFatalAPIFormat } = await import('@ionic/cli-utils/lib/http');
-    const { columnar } = await import('@ionic/cli-utils/lib/utils/format');
+    const { createFatalAPIFormat } = await import('pw-ionic-cli-utils/lib/http');
+    const { columnar } = await import('pw-ionic-cli-utils/lib/utils/format');
 
     const {
       findHostSection,
       getConfigPath,
       isHostDirective,
       loadFromPath,
-    } = await import('@ionic/cli-utils/lib/ssh-config');
+    } = await import('pw-ionic-cli-utils/lib/ssh-config');
 
     const token = await this.env.session.getUserToken();
     const config = await this.env.config.load();

@@ -1,9 +1,9 @@
 import chalk from 'chalk';
 
-import { CommandLineInputs, CommandLineOptions, DistTag } from '@ionic/cli-utils';
-import { Command, CommandMetadata } from '@ionic/cli-utils/lib/command';
+import { CommandLineInputs, CommandLineOptions, DistTag } from 'pw-ionic-cli-utils';
+import { Command, CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
 import { fsUnlink } from '@ionic/cli-framework/utils/fs';
-import { FatalException } from '@ionic/cli-utils/lib/errors';
+import { FatalException } from 'pw-ionic-cli-utils/lib/errors';
 
 @CommandMetadata({
   name: 'daemon',
@@ -25,12 +25,12 @@ import { FatalException } from '@ionic/cli-utils/lib/errors';
 })
 export class DaemonCommand extends Command {
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { prettyPath } = await import('@ionic/cli-utils/lib/utils/format');
-    const { createCommServer, processRunning } = await import('@ionic/cli-utils/lib/daemon');
-    const { pkgLatestVersion } = await import('@ionic/cli-utils/lib/utils/npm');
-    const { findClosestOpenPort } = await import('@ionic/cli-utils/lib/utils/network');
-    const { determineDistTag, versionNeedsUpdating } = await import('@ionic/cli-utils/lib/plugins');
-    const { registerShutdownFunction } = await import('@ionic/cli-utils/lib/process');
+    const { prettyPath } = await import('pw-ionic-cli-utils/lib/utils/format');
+    const { createCommServer, processRunning } = await import('pw-ionic-cli-utils/lib/daemon');
+    const { pkgLatestVersion } = await import('pw-ionic-cli-utils/lib/utils/npm');
+    const { findClosestOpenPort } = await import('pw-ionic-cli-utils/lib/utils/network');
+    const { determineDistTag, versionNeedsUpdating } = await import('pw-ionic-cli-utils/lib/plugins');
+    const { registerShutdownFunction } = await import('pw-ionic-cli-utils/lib/process');
 
     const updateInterval = Number(options.interval);
     const killExisting = options['kill-existing'];

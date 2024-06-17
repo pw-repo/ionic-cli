@@ -3,11 +3,11 @@ import * as path from 'path';
 
 import chalk from 'chalk';
 
-import { BACKEND_PRO, CommandLineInputs, CommandLineOptions, CommandPreRun } from '@ionic/cli-utils';
-import { isSSHKeyResponse, isSuperAgentError } from '@ionic/cli-utils/guards';
-import { CommandMetadata } from '@ionic/cli-utils/lib/command';
+import { BACKEND_PRO, CommandLineInputs, CommandLineOptions, CommandPreRun } from 'pw-ionic-cli-utils';
+import { isSSHKeyResponse, isSuperAgentError } from 'pw-ionic-cli-utils/guards';
+import { CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
 import { ERROR_FILE_NOT_FOUND, pathAccessible, pathExists } from '@ionic/cli-framework/utils/fs';
-import { FatalException } from '@ionic/cli-utils/lib/errors';
+import { FatalException } from 'pw-ionic-cli-utils/lib/errors';
 
 import { SSHBaseCommand } from './base';
 
@@ -32,7 +32,7 @@ import { SSHBaseCommand } from './base';
 })
 export class SSHAddCommand extends SSHBaseCommand implements CommandPreRun {
   async preRun(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { prettyPath } = await import('@ionic/cli-utils/lib/utils/format');
+    const { prettyPath } = await import('pw-ionic-cli-utils/lib/utils/format');
 
     if (!inputs[0]) {
       const fs = await import('fs');
@@ -51,10 +51,10 @@ export class SSHAddCommand extends SSHBaseCommand implements CommandPreRun {
   }
 
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { expandPath, prettyPath } = await import('@ionic/cli-utils/lib/utils/format');
-    const { createFatalAPIFormat } = await import('@ionic/cli-utils/lib/http');
+    const { expandPath, prettyPath } = await import('pw-ionic-cli-utils/lib/utils/format');
+    const { createFatalAPIFormat } = await import('pw-ionic-cli-utils/lib/http');
 
-    const { ERROR_SSH_INVALID_PUBKEY, parsePublicKeyFile } = await import('@ionic/cli-utils/lib/ssh');
+    const { ERROR_SSH_INVALID_PUBKEY, parsePublicKeyFile } = await import('pw-ionic-cli-utils/lib/ssh');
 
     const pubkeyPath = expandPath(inputs[0]);
     const pubkeyName = prettyPath(pubkeyPath);

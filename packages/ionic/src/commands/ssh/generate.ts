@@ -3,8 +3,8 @@ import * as path from 'path';
 import chalk from 'chalk';
 
 import { contains, validate } from '@ionic/cli-framework/lib';
-import { BACKEND_PRO, CommandLineInputs, CommandLineOptions, CommandPreRun } from '@ionic/cli-utils';
-import { CommandMetadata } from '@ionic/cli-utils/lib/command';
+import { BACKEND_PRO, CommandLineInputs, CommandLineOptions, CommandPreRun } from 'pw-ionic-cli-utils';
+import { CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
 import { fsMkdirp, fsUnlink, pathExists } from '@ionic/cli-framework/utils/fs';
 
 import { SSHBaseCommand } from './base';
@@ -61,8 +61,8 @@ export class SSHGenerateCommand extends SSHBaseCommand implements CommandPreRun 
   }
 
   async run(inputs: CommandLineInputs, options: CommandLineOptions): Promise<void> {
-    const { expandPath, prettyPath } = await import('@ionic/cli-utils/lib/utils/format');
-    const { getGeneratedPrivateKeyPath } = await import('@ionic/cli-utils/lib/ssh');
+    const { expandPath, prettyPath } = await import('pw-ionic-cli-utils/lib/utils/format');
+    const { getGeneratedPrivateKeyPath } = await import('pw-ionic-cli-utils/lib/ssh');
 
     const { bits, annotation } = options;
 

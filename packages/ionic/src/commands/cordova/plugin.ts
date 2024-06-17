@@ -1,10 +1,10 @@
 import chalk from 'chalk';
 
 import { contains, validate, validators } from '@ionic/cli-framework/lib';
-import { CommandLineInputs, CommandLineOptions, CommandPreRun } from '@ionic/cli-utils';
-import { CommandMetadata } from '@ionic/cli-utils/lib/command';
-import { CORDOVA_INTENT, filterArgumentsForCordova } from '@ionic/cli-utils/lib/cordova/utils';
-import { FatalException } from '@ionic/cli-utils/lib/errors';
+import { CommandLineInputs, CommandLineOptions, CommandPreRun } from 'pw-ionic-cli-utils';
+import { CommandMetadata } from 'pw-ionic-cli-utils/lib/command';
+import { CORDOVA_INTENT, filterArgumentsForCordova } from 'pw-ionic-cli-utils/lib/cordova/utils';
+import { FatalException } from 'pw-ionic-cli-utils/lib/errors';
 
 import { CordovaCommand } from './base';
 
