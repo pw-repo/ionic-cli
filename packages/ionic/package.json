@@ -1,6 +1,6 @@
 {
-  "name": "@pw/ionic-cli",
-  "version": "0.0.1",
+  "name": "pw-ionic-cli",
+  "version": "1.0.0",
   "description": "A tool for creating and developing Ionic Framework mobile apps.",
   "author": "pw",
   "bin": {
