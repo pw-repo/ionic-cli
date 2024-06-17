@@ -1,9 +1,8 @@
 {
-  "name": "@ionic/cli-utils",
-  "version": "1.19.3",
+  "name": "@pw/ionic-cli-utils",
+  "version": "0.0.1",
   "description": "Ionic CLI Utils",
-  "homepage": "https://ionicframework.com",
-  "author": "Ionic Team <hi@ionic.io> (https://ionicframework.com)",
+  "author": "pw",
   "main": "./index.js",
   "types": "./index.d.ts",
   "scripts": {
@@ -29,10 +28,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ionic-team/ionic-cli.git"
+    "url": "https://github.com/pw-repo/pw-ionic-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/ionic-team/ionic-cli/issues"
+    "url": "https://github.com/pw-repo/pw-ionic-cli/issues"
   },
   "license": "MIT",
   "dependencies": {
