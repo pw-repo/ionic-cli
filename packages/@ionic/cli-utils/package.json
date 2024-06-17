@@ -1,6 +1,6 @@
 {
   "name": "pw-ionic-cli-utils",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Ionic CLI Utils",
   "author": "pw",
   "main": "./index.js",
