@@ -10,7 +10,8 @@
     "build": "npm run clean && tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "preinstall": "npx npm-force-resolutions"
   },
   "keywords": [
     "ionic",
@@ -84,13 +85,22 @@
     "@types/inquirer": "0.0.35",
     "@types/lodash": "4.14.80",
     "@types/minimist": "1.2.0",
+    "@types/node": "6.0.92",
     "@types/opn": "3.0.28",
     "@types/semver": "5.4.0",
     "@types/tar": "4.0.0",
     "@types/untildify": "3.0.0",
     "@types/uuid": "3.4.3",
     "@types/ws": "3.2.0",
-    "rxjs": "5.5.2"
+    "npm-force-resolutions": "0.0.10",
+    "rxjs": "5.5.2",
+    "typescript": "2.6.1"
+  },
+  "resolutions": {
+    "@types/express-serve-static-core": "4.0.38",
+    "@types/glob": "5.0.32",
+    "@types/minimatch": "3.0.1",
+    "@types/vinyl": "2.0.0"
   },
   "jest": {
     "globals": {

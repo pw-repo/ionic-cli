@@ -132,7 +132,7 @@ async function addIntegration(env: IonicEnvironment, integration: IntegrationTem
   env.log.debug(() => `Blacklist: ${blacklist.map(f => chalk.bold(f)).join(', ')}`);
 
   await copyDirectory(tmpdir, env.project.directory, {
-    filter: f => {
+    filter: (f:any) => {
       if (f === tmpdir) {
         return true;
       }
